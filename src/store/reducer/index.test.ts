@@ -18,5 +18,16 @@ describe('reducer', () => {
         
       });
     });
+
+    it('handles SET_SEARCH_QUERY', () => {
+      const payload = {
+        searchQuery: "tele",
+       
+      }
+      expect(reducer({},{type: 'SET_SEARCH_QUERY', payload})).toEqual({
+        searchQuery: "tele",
+        
+      });
+    });
   });
 });
