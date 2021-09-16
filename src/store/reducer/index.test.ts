@@ -3,7 +3,7 @@ import {initialState, reducer} from "./index";
 describe('reducer', () => {
   describe('app state', () => {
     it('has intial state', () => {
-      expect(reducer(undefined,{})).toEqual(undefined)
+      expect(reducer(undefined,{})).toEqual(undefined);
     })
 
     it('handles LOGIN', () => {
