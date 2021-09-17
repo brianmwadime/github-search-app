@@ -13,9 +13,6 @@ const repoQuery = (
   return {
     query: `
     {
-      viewer {
-        login
-      }
       search(query: "${queryString}", type: REPOSITORY, ${paginationKeyword}: ${pageCount}, ${paginationString}) {
         repositoryCount
         edges {
