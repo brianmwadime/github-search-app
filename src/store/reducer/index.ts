@@ -2,9 +2,9 @@ export const initialState = {
   isAuthenticated: JSON.parse(localStorage.getItem("isAuthenticated") || 'false'),
   accessToken: localStorage.getItem("accessToken") || null,
   user: JSON.parse(localStorage.getItem("user") || "{}"),
-  client_id: process.env.REACT_APP_GITHUB_CLIENT_ID,
-  redirect_url: process.env.REACT_APP_GITHUB_REDIRECT_URL,
-  proxy_url: process.env.REACT_APP_GITHUB_PROXY_URL,
+  clientId: process.env.REACT_APP_GITHUB_CLIENT_ID,
+  redirectUrl: process.env.REACT_APP_GITHUB_REDIRECT_URL,
+  proxyUrl: process.env.REACT_APP_GITHUB_PROXY_URL,
   searchQuery: localStorage.getItem("searchQuery") || null,
 };
 
