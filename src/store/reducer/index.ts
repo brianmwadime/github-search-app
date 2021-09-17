@@ -6,6 +6,7 @@ export const initialState = {
   redirectUrl: process.env.REACT_APP_GITHUB_REDIRECT_URL,
   proxyUrl: process.env.REACT_APP_GITHUB_PROXY_URL,
   searchQuery: localStorage.getItem("searchQuery") || null,
+  pageCount: 10
 };
 
 
