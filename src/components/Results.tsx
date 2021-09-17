@@ -27,6 +27,13 @@ export default function Results() {
   const [hasNextPage, setHasNextPage] = useState(true);
   const [paginationKeyword, setPaginationKeyword] = useState('first');
   const [paginationString, setPaginationString] = useState('');
+
+  const [startUserCursor, setStartUserCursor] = useState(null);
+  const [endUserCursor, setEndUserCursor] = useState(null);
+  const [hasPreviousUserPage, setHasPreviousUserPage] = useState(false);
+  const [hasNextUserPage, setHasNextUserPage] = useState(true);
+  const [paginationUserKeyword, setPaginationUserKeyword] = useState('first');
+  const [paginationUserString, setPaginationUserString] = useState('');
   const history = useHistory();
 
   const fetchRepos = useCallback(() => {
@@ -63,7 +70,7 @@ export default function Results() {
   }, [paginationKeyword, paginationString, state]);
 
   const fetchUsers = useCallback(() => {
-    const queryText = JSON.stringify(userQuery(state.pageCount, state.searchQuery, paginationKeyword, paginationString));
+    const queryText = JSON.stringify(userQuery(state.pageCount, state.searchQuery, paginationUserKeyword, paginationUserString));
 
     fetch(`${process.env.REACT_APP_GITHUB_GRAPHQL_URL}`, {
       method: "POST",
@@ -85,15 +92,15 @@ export default function Results() {
       setUserList(users);
       setTotalUserCount(total);
 
-      setStartCursor(start);
-      setEndCursor(end);
-      setHasNextPage(next);
-      setHasPreviousPage(prev);
+      setStartUserCursor(start);
+      setEndUserCursor(end);
+      setHasNextUserPage(next);
+      setHasPreviousUserPage(prev);
     })
     .catch(err => {
       console.log(err);
     }); 
-  }, [paginationKeyword, paginationString, state.pageCount, state.searchQuery]);
+  }, [paginationUserKeyword, paginationUserString, state.pageCount, state.searchQuery]);
 
   useEffect(() => {
     if (tab === "repos") {
@@ -157,39 +164,37 @@ export default function Results() {
               </div>
             </div>
           </div>
-          {
-            tab === "repos" ?
+          {tab === "repos" ? (
             <div className="col-md-7">
-            <h5>{totalRepoCount} repository results</h5>
-            { repoList && (
-          <ul className='list-group list-group-flush'>
-            { repoList.map((repo) => (
-                <RepoInfo key={repo.node.id} repo={repo.node} url={repo.node.url} name={repo.node.nameWithOwner} description={repo.node.description} stargazerCount={repo.node.stargazerCount} id={repo.node.id} licenseInfo={repo.node.licenseInfo?.name} primaryLanguage={repo.node.primaryLanguage?.name} updatedAt={repo.node.updatedAt} />
-              ))}
-          </ul>
-        )}
+              <h5>{totalRepoCount} repository results</h5>
+                { repoList && (
+                <ul className='list-group list-group-flush'>
+                  { repoList.map((repo) => (
+                    <RepoInfo key={repo.node.id} repo={repo.node} url={repo.node.url} name={repo.node.nameWithOwner} description={repo.node.description} stargazerCount={repo.node.stargazerCount} id={repo.node.id} licenseInfo={repo.node.licenseInfo?.name} primaryLanguage={repo.node.primaryLanguage?.name} updatedAt={repo.node.updatedAt} />
+                    ))}
+                </ul>
+              )}
           </div>
-
-              :
-
-              <div className="col-md-7">
-            <h5>{totalUserCount} users</h5>
-            { userList && (
-          <ul className='list-group list-group-flush'>
-            { userList.map((user) => (
-                <UserCard key={user.node.id} url={user.node.url} name={user.node.name} bio={user.node.bio} id={user.node.id} email={user.node.email} />
-              ))}
-          </ul>
-        )}
-          </div>
-
-          }
+          ) : (
+            <div className="col-md-7">
+              <h5>{totalUserCount} users</h5>
+                { userList && (
+                  <ul className='list-group list-group-flush'>
+                    { userList.map((user) => (
+                      <UserCard key={user.node.id} url={user.node.url} name={user.node.name} bio={user.node.bio} id={user.node.id} email={user.node.email} />
+                    ))}
+                  </ul>
+                )}
+              </div>
+          )}
         </div>
+
         <div className="row">
           <div className="col-md-3 offset-md-1">
 
           </div>
           <div className="col-md-7">
+          {tab === "repos" ? (
             <Pagination
               start={startCursor} 
               end={endCursor} 
@@ -198,9 +203,24 @@ export default function Results() {
               onPage={(myKeyword: string, myString: string) => {
                 setPaginationKeyword(myKeyword);
                 setPaginationString(myString);
-              }} />
+            }} />
+          ) : (
+            <Pagination
+              start={startUserCursor} 
+              end={endUserCursor} 
+              next={hasNextUserPage} 
+              previous={hasPreviousUserPage} 
+              onPage={(myKeyword: string, myString: string) => {
+                setPaginationUserKeyword(myKeyword);
+                setPaginationUserString(myString);
+            }} />
+          )}
+            
           </div>
         </div>
+
+        
+
       </div>
       
     </ResultsWrapper>
