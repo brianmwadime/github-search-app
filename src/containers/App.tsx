@@ -11,10 +11,11 @@ type InitialStateType = {
   isAuthenticated?: boolean,
   accessToken?: string | null,
   user?: object,
-  client_id?: string,
-  redirect_url?: string,
-  proxy_url?: string,
+  clientId?: string,
+  redirectUrl?: string,
+  proxyUrl?: string,
   searchQuery?: string | null
+  pageCount?: number
 }
 
 export const AuthContext = createContext<{state: InitialStateType, dispatch: Dispatch<any>}>({
