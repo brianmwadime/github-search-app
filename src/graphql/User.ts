@@ -1,10 +1,4 @@
-// ! , orderBy: {field: PUSHED_AT, direction: DESC}
-// Cool users:
-// mitchellh
-// wojtekmaj
-// motdotla
-
-const repoQuery = (
+const userQuery = (
   pageCount: any, 
   queryString: any, 
   paginationKeyword: any, 
@@ -14,7 +8,7 @@ const repoQuery = (
     query: `
     {
       search(query: "${queryString}", type: USER, ${paginationKeyword}: ${pageCount}, ${paginationString}) {
-        repositoryCount
+        userCount
         edges {
           cursor
           node {
@@ -38,4 +32,4 @@ const repoQuery = (
   };
 };
 
-export default repoQuery;
+export default userQuery;
