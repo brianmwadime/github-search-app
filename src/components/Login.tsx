@@ -9,6 +9,7 @@ export default function Login() {
   const [data, setData] = useState({ errorMessage: "", isLoading: false, authToken: null });
 
   const onSuccess = (response: any) => {
+    console.log("Success: ", response);
     setData({
       ...data,
       isLoading: true,
@@ -16,6 +17,7 @@ export default function Login() {
     })
   };
   const onFailure = (response: any) => {
+    console.log("Error: ", response);
     setData({
       ...data,
       errorMessage: response,
@@ -24,7 +26,7 @@ export default function Login() {
   };
 
   useEffect(() => {
-    
+    console.log("credentials", data.authToken, !state.isAuthenticated);
     if(data.authToken != null && !state.isAuthenticated) {
 
       const requestData = {
@@ -45,7 +47,6 @@ export default function Login() {
           });
         })
         .catch(error => {
-          console.log("error", error);
           setData({
             ...data,
             isLoading: false,
@@ -63,7 +64,7 @@ export default function Login() {
     <Wrapper>
       <div className="login-container">
         <div>
-          <LoginGithub clientId={state.clientId} className={"login-link"} buttonText={"Login to Github"} scope={"repo, user"}
+          <LoginGithub clientId={state.clientId} redirectUri={state.redirectUrl} className={"login-link"} buttonText={"Login to Github"} scope={"repo, user"}
           onSuccess={onSuccess}
           onFailure={onFailure}/>
         </div>
