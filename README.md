@@ -6,9 +6,9 @@ Github repositories and users, using their search parameters.
 </p>
 
 <p align="center">
-    <a href="#-build-instructions">Build Instructions</a> •
-    <a href="#-testing-instructions">Testing</a> •
-    <a href="#-setup-keys">Setup Keys</a>
+    <a href="#build-instructions">Build Instructions</a> •
+    <a href="#testing-instructions">Testing</a> •
+    <a href="#setup-envars">Setup Envars</a>
 </p>
 
 ## Build Instructions
@@ -25,7 +25,7 @@ Github repositories and users, using their search parameters.
    cd github-search-assessment
    ```
 
-3. <a href="#-setup-envars">Setup environment variables</a>
+3. <a href="#setup-envars">Setup environment variables</a>
 
 4. Install the third party dependencies and tools required to run the project.
 
