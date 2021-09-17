@@ -11,6 +11,7 @@
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "bootstrap-icons": "^1.5.0",
+    "dotenv": "^10.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-login-github": "^1.0.7",
@@ -21,12 +22,10 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts -r @cypress/instrument-cra start",
     "build": "react-scripts build",
-    "cypress:start": "BROWSER=none react-scripts -r cypress/instrument-cra start",
-    "cypress:wait": "start-server-and-test cypress:start http://localhost:3000",
-    "cypress:open": "yarn run cypress:start:wait -- \"cypress open\"",
-    "cypress:run": "yarn run cypress:start:wait -- \"cypress run\"",
+    "cypress:open": "cypress open",
+    "cypress:run": "yarn run cypress:wait \"cypress run\"",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -49,6 +48,7 @@
     ]
   },
   "devDependencies": {
+    "@bahmutov/add-typescript-to-cypress": "^2.1.2",
     "@cypress/code-coverage": "^3.9.11",
     "@cypress/instrument-cra": "^1.4.0",
     "@types/query-string": "^6.3.0",
