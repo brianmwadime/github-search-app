@@ -103,12 +103,15 @@ export default function Results() {
   }, [paginationUserKeyword, paginationUserString, state.pageCount, state.searchQuery]);
 
   useEffect(() => {
-    if (tab === "repos") {
-      fetchRepos();
-    } else if(tab === "users") {
-      fetchUsers()
+    if(state.isAuthenticated) {
+      if (tab === "repos") {
+        fetchRepos();
+      }
+
+      if(tab === "users") {
+        fetchUsers()
+      }
     }
-    
     
   }, [tab, fetchRepos, fetchUsers, dispatch])
 
