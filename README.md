@@ -1,4 +1,4 @@
-# Assessment: Github Search clone
+# Github Search Application
 
 <p>
 A Github search app that allows an authenticated Github user to search
@@ -16,13 +16,13 @@ Github repositories and users, using their search parameters.
 1. Clone project in the folder of your preference
 
    ```bash
-       git clone https://github.com/brianmwadime/github-search-assessment.git
+       git clone https://github.com/brianmwadime/github-search-app.git
    ```
 
 2. Enter the project directory
 
    ```bash
-   cd github-search-assessment
+   cd github-search-app
    ```
 
 3. <a href="#setup-envars">Setup environment variables</a>
